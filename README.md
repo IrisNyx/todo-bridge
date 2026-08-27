@@ -6,6 +6,82 @@
 
 ---
 
+## ⚡ 快速上手（小白版，约 5 分钟）
+
+> 目标：装好 todo-bridge，跑通 `node src/cli.js ping`（看到 `connected: true`），再接入 AI。
+> 全程只需要 ① 装两个软件 ② 下载项目 ③ 配置一个路径 ④ 跑两条命令。
+
+### 第 1 步：安装 Node.js（一次性）
+
+1. 打开 <https://nodejs.org>，下载左侧 **LTS**（长期支持）版本，双击安装，一路「下一步」。
+2. 装完打开「命令提示符」或「PowerShell」，输入：
+   ```bat
+   node --version
+   ```
+   能看到 `v18` 或更高的版本号就 OK。提示"不是内部或外部命令"，多半是没装好或没重启终端——重开一个窗口再试。
+
+### 第 2 步：安装 Todo清单 官方 Windows 电脑版（一次性）
+
+从官方渠道安装 **Todo清单** Windows 电脑版并登录你的账号。
+todo-bridge 是"遥控"这个桌面端、不是独立客户端，所以这步必须有。
+
+### 第 3 步：下载本项目
+
+1. 打开本仓库首页 → 点右上角绿色 **Code** 按钮 → **Download ZIP**。
+2. 解压到任意目录，本文示例用 `C:\todo-bridge`（解压后能看到 `README.md`、`src\`、`start-todo-debug.bat` 等文件）。
+
+### 第 4 步：安装依赖
+
+打开「命令提示符」，进入项目目录并安装：
+```bat
+cd C:\todo-bridge
+npm install
+```
+等它跑完、没有红色报错即可。
+
+### 第 5 步：告诉工具你的 Todo清单.exe 在哪（关键！）
+
+1. 找到 `Todo清单.exe`：右键桌面或开始菜单里的「Todo清单」→「打开文件所在位置」，把地址栏里的完整路径记下来。
+2. 用**你的实际路径**执行（`C:\...` 只是示例，一定要替换）：
+   ```bat
+   setx TODO_LIST_EXE "C:\Program Files\Todo清单\Todo清单.exe"
+   ```
+3. **关掉并重开所有命令行窗口**（`setx` 只对新窗口生效），再继续下一步。
+
+> 找不到 exe？可用 `where /r C:\ Todo清单.exe` 全盘搜一下（可能较慢）。
+
+### 第 6 步：以调试模式启动 Todo清单
+
+双击项目里的 **`start-todo-debug.bat`**。
+它会自动：关闭旧的 Todo清单 → 用调试端口 9222 重新启动 → 等到端口就绪。
+启动后 Todo清单 窗口会正常打开，**别关它**（工具要靠它读写数据）。
+
+> 打不开 / 报"未设置 TODO_LIST_EXE"？回第 5 步检查：环境变量是否设置、路径是否写对、命令行窗口是否重启过。
+
+### 第 7 步：验证是否成功
+
+回到第 4 步那个命令行窗口，运行：
+```bat
+cd C:\todo-bridge
+node src/cli.js doctor
+node src/cli.js ping
+```
+看到 `connected: true` 和你的任务统计 = **安装成功**！
+
+接下来你可以：
+- **人用**：按 [`docs/USAGE.md`](docs/USAGE.md) 用命令行管理任务（查今天的、加任务、标完成……）；
+- **给 AI 用**：按下面「五、AI 客户端接入」接进 Claude Desktop / Cursor / gateway。
+
+### 卡住了？
+
+看「八、常见问题排查」；还是不行就提 Issue，把 `node src/cli.js doctor` 的输出一起贴上来，能更快帮你定位。
+
+> 💡 两个高频坑：
+> ① Todo清单 要从 bat / 快捷方式启动，直接在终端里 `.\Todo清单.exe` 会秒退；
+> ② `ping` 报 `CDP.List timeout` = 9222 端口没起来，重跑第 6 步。
+
+---
+
 ## 一、技能概述
 
 | 属性 | 值 |
@@ -378,7 +454,7 @@ curl -X POST http://127.0.0.1:3100/call/todo.getTodos -H "Content-Type: applicat
 
 1. **Node.js ≥ 18** — 验证: `node --version`
 2. **npm 依赖** — `cd <todo-bridge 目录> && npm install`
-3. **配置 exe 路径** — 编辑 [`src/config.js`](src/config.js) 中的 `exePath`
+3. **配置 exe 路径** — 设置环境变量 `TODO_LIST_EXE` 指向你的 `Todo清单.exe`（见上方「⚡ 快速上手」第 5 步）。`setx TODO_LIST_EXE "..."` 永久生效；临时生效用 `set TODO_LIST_EXE=...`
 
 ### 启动流程
 
