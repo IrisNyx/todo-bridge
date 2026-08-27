@@ -1,0 +1,24 @@
+{
+  "name": "todo-bridge",
+  "version": "1.1.0",
+  "private": true,
+  "description": "通用 Todo清单 MCP Bridge — 通过 CDP 连接桌面端，让 AI 读写任务",
+  "type": "commonjs",
+  "bin": {
+    "todo-bridge": "./src/cli.js"
+  },
+  "scripts": {
+    "mcp": "node src/mcp-server.js",
+    "cli": "node src/cli.js",
+    "doctor": "node src/cli.js doctor",
+    "add": "node src/cli.js add",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "chrome-remote-interface": "^0.34.0",
+    "ws": "^8.21.0"
+  }
+}

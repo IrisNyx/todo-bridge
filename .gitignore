@@ -1,0 +1,13 @@
+# 依赖
+node_modules/
+
+# 本机私有：SKILL.md 含个人分类 ID / userId，仅供本地使用，不发布
+SKILL.md
+
+# 日志 / 临时文件
+*.log
+tmp/
+
+# 调试残留
+_expr.txt
+
