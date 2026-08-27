@@ -13,7 +13,7 @@
 > ⚠️ 也不要直接传 `--remote-debugging-port` —— git-bash 会改写参数导致 `bad option`。
 
 ```bat
-cd /d <todo-bridge 目录>    :: 例如 D:\software\todo-bridge
+cd /d <todo-bridge 目录>    :: 改成你的实际目录
 start-todo-debug.bat        :: 内部用 start 分离启动，带 CDP 9222
 ```
 

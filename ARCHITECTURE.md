@@ -169,7 +169,7 @@ var store = vm.$store;        // Vuex Store
 ## 文件结构
 
 ```
-D:\software\todo-bridge\
+<todo-bridge 目录>\
 │
 ├── package.json                  # 项目配置、依赖声明、npm scripts
 ├── start-todo-debug.bat          # ① 以 Debug 模式启动 Todo清单
@@ -229,7 +229,7 @@ taskkill /f /im "Todo清单.exe" 2>nul     :: 强杀旧进程
 timeout /t 2 /nobreak >nul               :: 等端口释放
 
 :: 以 CDP 模式启动
-start "TodoDebug" "D:\software\todolist\todo-list\Todo清单.exe" ^
+start "TodoDebug" "%TODO_LIST_EXE%" ^
     --remote-debugging-port=9222 ^
     --remote-allow-origins=*
 

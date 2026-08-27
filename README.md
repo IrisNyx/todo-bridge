@@ -122,7 +122,7 @@ Todo清单.exe (Electron)
 
 ## 三、CLI 命令参考
 
-> 所有命令需在项目根目录 `D:\software\todo-bridge\` 下执行。
+> 所有命令需在项目根目录 `<todo-bridge 目录>\` 下执行。
 > App 必须已以 `--remote-debugging-port=9222` 启动。
 
 | # | 命令 | 说明 | 需要 CDP |
@@ -377,7 +377,7 @@ curl -X POST http://127.0.0.1:3100/call/todo.getTodos -H "Content-Type: applicat
 ### 前置条件
 
 1. **Node.js ≥ 18** — 验证: `node --version`
-2. **npm 依赖** — `cd D:\software\todo-bridge && npm install`
+2. **npm 依赖** — `cd <todo-bridge 目录> && npm install`
 3. **配置 exe 路径** — 编辑 [`src/config.js`](src/config.js) 中的 `exePath`
 
 ### 启动流程
@@ -418,7 +418,7 @@ curl -X POST http://127.0.0.1:3100/call/todo.getTodos -H "Content-Type: applicat
 ## 九、项目文件清单
 
 ```
-D:\software\todo-bridge\
+<todo-bridge 目录>\
 ├── README.md                ← 本文件
 ├── ARCHITECTURE.md          ← 详细架构文档
 ├── BUG_FIX_REPORT.md        ← Bug 修复报告
