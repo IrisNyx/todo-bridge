@@ -213,7 +213,7 @@ node src/cli.js delete tid_xxx
 > ✅ **返回的每个任务额外带 `subtasks` 数组**（由 `standbyStr2` 解析），同时保留原始 `standbyStr2` 字符串。无子清单时 `subtasks: []`。
 > 示例：`{ "content": "买菜", "done": false }` / `{ "content": "拖地", "done": true }`（`done: true` = 该子项已完成）。
 
-### `todo.todayTodos` — 今天所有任务（推荐，避免 3500 条爆 limit）
+### `todo.todayTodos` — 今天所有任务（推荐，避免全量拉取爆 limit）
 
 ```json
 {

@@ -40,7 +40,7 @@ todo-bridge 是**独立进程**，三种接法任选其一：
 
 1. **用 `taskId` 引用任务**，不要用数字 `id`。当前 App（v3.14.0）任务**没有数字 `id` 字段**，传数字 id 会优雅返回 not found。taskId 形如 `tid_<userId>_<uuid>_<ts>`。
 2. **`getTodos` 默认不含已删除任务**。要查软删的任务，传 `includeDeleted: true`。
-3. **总量 3500+**，查"今天要做什么"**优先用 `todo.todayTodos`**（自动按当天过滤，不会爆 limit）。其他场景务必加 `limit` 或 `date`/`active`/`categoryId` 等筛选，否则返回海量数据。
+3. **任务总量可能很大**，查"今天要做什么"**优先用 `todo.todayTodos`**（自动按当天过滤，不会爆 limit）。其他场景务必加 `limit` 或 `date`/`active`/`categoryId` 等筛选，否则返回海量数据。
 4. **子清单（subtasks）格式**：
    - 创建/更新时 `sublist` 是**字符串**：`"- [ ]买菜[end] - [x]拖地"`（`[x]`=已完成，条目间 `[end] - `）。
    - 查询返回的 `subtasks` 是**数组**：`[{ "content": "买菜", "done": false }]`。原始串保留在 `standbyStr2`。
